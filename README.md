@@ -6,7 +6,7 @@ An intelligent career transition tool that recommends personalized learning path
 
 This interactive web application helps professionals identify their optimal learning journey to become AI Product Managers by analyzing their background, experience level, timeline goals, and learning preferences. The recommendations are based on real market trends, salary data, and industry insights from 2025.
 
-**Live Demo:** [Add your live URL here when deployed]
+**Live Demo:** https://sonakshiv10-aws.github.io/ai-career-path-finder/
 
 ## 🚀 Key Features
 
