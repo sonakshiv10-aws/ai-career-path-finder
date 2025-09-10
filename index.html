@@ -4,6 +4,16 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>EduPath Learning Path Finder</title>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VK6F2MSKS0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VK6F2MSKS0');
+</script>
 
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
@@ -371,6 +381,28 @@
         <div class="step-title"><span class="step-index">5</span>Your Next Steps</div>
         <div id="nextSteps" class="course-list"></div>
 
+        <div class="feedback-section" style="background:#f8f9ff;border:2px solid #e3e8ff;border-radius:12px;padding:20px;margin-bottom:20px;">
+          <h3 style="color:var(--brand);margin-bottom:16px;">Help Us Improve</h3>
+          <form id="feedbackForm">
+            <div style="margin-bottom:12px;">
+              <label style="display:block;margin-bottom:4px;font-weight:600;">How helpful were these recommendations?</label>
+              <select id="helpfulness" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;">
+                <option value="">Select rating</option>
+                <option value="5">Very helpful</option>
+                <option value="4">Helpful</option>
+                <option value="3">Somewhat helpful</option>
+                <option value="2">Not very helpful</option>
+                <option value="1">Not helpful at all</option>
+              </select>
+            </div>
+            <div style="margin-bottom:12px;">
+              <label style="display:block;margin-bottom:4px;font-weight:600;">What's missing from this assessment?</label>
+              <textarea id="feedback" placeholder="Optional feedback..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;height:60px;resize:vertical;"></textarea>
+            </div>
+            <button type="submit" style="background:var(--brand);color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;">Submit Feedback</button>
+            <div id="thankYou" style="display:none;color:green;margin-top:8px;">Thank you for your feedback!</div>
+          </form>
+        </div>
         <div class="cta">
           <h4>🚀 Ready to Start?</h4>
           <div id="ctaSub" class="cta-sub">Start with your certification</div>
@@ -701,6 +733,26 @@ const techGapSkillsByExperience = {
       document.getElementById('progressFill').style.width = '0%';
       window.scrollTo(0, 0);
     }
+    // Feedback form handling
+document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const helpfulness = document.getElementById('helpfulness').value;
+  const feedback = document.getElementById('feedback').value;
+  
+  // Log to console (in real app, would send to server)
+  console.log('Feedback submitted:', { helpfulness, feedback, timestamp: new Date() });
+  
+  // Show thank you message
+  document.getElementById('thankYou').style.display = 'block';
+  
+  // Track in Google Analytics if available
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'feedback_submitted', {
+      'helpfulness_rating': helpfulness,
+      'has_text_feedback': feedback.length > 0
+    });
+  }
+});
   </script>
 </body>
 </html>
