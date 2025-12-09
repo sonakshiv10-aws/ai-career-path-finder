@@ -96,22 +96,7 @@
       background:var(--brand);color:#fff;border-color:var(--brand-dk);
     }
     
-    /* Disabled options - no hover, grayed out */
-    .option.disabled{
-      background:var(--disabled);border-color:#e0e0e0;cursor:not-allowed;
-      opacity:0.6;
-    }
-    .option.disabled .option-title{color:var(--disabled-text)}
-    .option.disabled .option-desc{color:var(--disabled-text)}
     
-    /* Coming soon badge for disabled options */
-    .option.disabled::after{
-      content:"Coming Soon";
-      position:absolute;top:8px;right:8px;
-      background:#9aa0a6;color:#fff;font-size:10px;
-      padding:2px 6px;border-radius:8px;font-weight:600;
-    }
-
     .option-title{font-size:18px;font-weight:600;color:#2f3645;margin-bottom:4px}
     .option-desc{font-size:14px;color:#5b6573}
     .option.active.selected .option-title,.option.active.selected .option-desc{color:#fff;opacity:.98}
@@ -123,6 +108,33 @@
     .trend-badge.emerging{background:#5352ed}
     .trend-badge.competitive{background:#ff9ff3}
     .trend-badge.growth{background:#26de81}
+
+    .trend-badge.growth{background:#26de81}
+
+/* Beta badge for placeholder paths */
+.beta-badge {
+  display: inline-block;
+  background: #fbbf24;
+  color: #78350f;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  margin-left: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.option.beta-path {
+  border: 2px solid #e5e7eb;
+  opacity: 0.92;
+}
+
+.option.beta-path:hover {
+  border-color: #fbbf24;
+  opacity: 1;
+}
+
+.results{display:none;text-align:left}
 
     .results{display:none;text-align:left}
     .results-header{margin:6px 0 24px;text-align:center}
@@ -222,9 +234,11 @@
       <p class="lead">Answer a few quick questions and we'll recommend the ideal program to launch your career in AI Product Management based on current market trends.</p>
       
       <div class="disclaimer">
-        <div class="disclaimer-title">Demo Version - Limited Paths Available</div>
-        This prototype demonstrates personalized learning recommendations for educational institutions. Currently supports <strong>Design→AI Product Manager</strong> and <strong>Tech→AI Product Manager</strong> career transitions based on real market data, as a proof of concept. 
-      </div>
+        <div class="disclaimer-title">V1 Testing Phase - Help Us Prioritize!</div>
+        We're building personalized career transition guidance. <strong>Currently complete: Design→AI PM and Tech→AI PM</strong> with detailed recommendations based on real market data.
+        <br><br>
+        <strong>All other paths show placeholder content</strong> to demonstrate the tool's potential. Your feedback helps us decide which paths to build next! 🚀
+      </div> 
       
       <button onclick="startFlow()" class="btn btn-primary">Get Started</button>
     </div>
@@ -241,20 +255,20 @@
           <div class="option-title">🎨 Design</div>
           <div class="option-desc">Creative or design experience</div>
         </div>
-        <div class="option disabled" data-value="business">
-          <div class="option-title">💼 Business</div>
+        <div class="option active beta-path" data-value="business">
+          <div class="option-title">💼 Business <span class="beta-badge">Beta</span></div>
           <div class="option-desc">Business/management background</div>
         </div>
         <div class="option active" data-value="tech">
           <div class="option-title">⚡ Tech</div>
           <div class="option-desc">Programming or IT</div>
         </div>
-        <div class="option disabled" data-value="marketing">
-          <div class="option-title">📢 Marketing</div>
+        <div class="option active beta-path" data-value="marketing">
+          <div class="option-title">📢 Marketing <span class="beta-badge">Beta</span></div>
           <div class="option-desc">Marketing or communications</div>
         </div>
-        <div class="option disabled" data-value="other">
-          <div class="option-title">📄 Other</div>
+        <div class="option active beta-path" data-value="other">
+          <div class="option-title">📄 Other <span class="beta-badge">Beta</span></div>
           <div class="option-desc">Different background / career change</div>
         </div>
       </div>
@@ -287,20 +301,20 @@
           <div class="option-title">🚀 AI Product Manager<span class="trend-badge emerging">EMERGING</span></div>
           <div class="option-desc">Lead AI-powered product strategy & delivery</div>
         </div>
-        <div class="option disabled" data-value="ux-designer">
-          <div class="option-title">🎯 UX Designer</div>
+        <div class="option active beta-path" data-value="ux-designer">
+          <div class="option-title">🎯 UX Designer <span class="beta-badge">Beta</span></div>
           <div class="option-desc">Design AI-enhanced user experiences</div>
         </div>
-        <div class="option disabled" data-value="data-analyst">
-          <div class="option-title">📊 Data Analyst<span class="trend-badge competitive">COMPETITIVE</span></div>
+        <div class="option active beta-path" data-value="data-analyst">
+          <div class="option-title">📊 Data Analyst<span class="trend-badge competitive">COMPETITIVE</span> <span class="beta-badge">Beta</span></div>
           <div class="option-desc">Turn data into AI-driven insights</div>
         </div>
-        <div class="option disabled" data-value="digital-marketer">
-          <div class="option-title">📱 Digital Marketer</div>
+        <div class="option active beta-path" data-value="digital-marketer">
+          <div class="option-title">📱 Digital Marketer <span class="beta-badge">Beta</span></div>
           <div class="option-desc">AI-powered audience growth & revenue</div>
         </div>
-        <div class="option disabled" data-value="ai-specialist">
-          <div class="option-title">🤖 AI Specialist<span class="trend-badge growth">HIGHEST GROWTH</span></div>
+        <div class="option active beta-path" data-value="ai-specialist">
+          <div class="option-title">🤖 AI Specialist<span class="trend-badge growth">HIGHEST GROWTH</span> <span class="beta-badge">Beta</span></div>
           <div class="option-desc">Build and deploy AI solutions</div>
         </div>
       </div>
@@ -381,32 +395,240 @@
         <div class="step-title"><span class="step-index">5</span>Your Next Steps</div>
         <div id="nextSteps" class="course-list"></div>
 
-        <div class="feedback-section" style="background:#f8f9ff;border:2px solid #e3e8ff;border-radius:12px;padding:20px;margin-bottom:20px;">
-          <h3 style="color:var(--brand);margin-bottom:16px;">Help Us Improve</h3>
-          <form id="feedbackForm">
-            <div style="margin-bottom:12px;">
-              <label style="display:block;margin-bottom:4px;font-weight:600;">How helpful were these recommendations?</label>
-              <select id="helpfulness" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;">
-                <option value="">Select rating</option>
-                <option value="5">Very helpful</option>
-                <option value="4">Helpful</option>
-                <option value="3">Somewhat helpful</option>
-                <option value="2">Not very helpful</option>
-                <option value="1">Not helpful at all</option>
-              </select>
-            </div>
-            <div style="margin-bottom:12px;">
-              <label style="display:block;margin-bottom:4px;font-weight:600;">What's missing from this assessment?</label>
-              <textarea id="feedback" placeholder="Optional feedback..." style="width:100%;padding:8px;border:1px solid #ddd;border-radius:6px;height:60px;resize:vertical;"></textarea>
-            </div>
-            <button type="submit" style="background:var(--brand);color:white;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;">Submit Feedback</button>
-            <div id="thankYou" style="display:none;color:green;margin-top:8px;">Thank you for your feedback!</div>
-          </form>
-        </div>
+        <!-- Enhanced Feedback Section - V3 Full Width + Numbered -->
+        <div class="feedback-section" id="feedbackSection" style="background:#f8f9ff;border:2px solid #e3e8ff;border-radius:16px;padding:40px 32px;margin-bottom:32px;">
+          <h3 style="color:var(--brand);margin-bottom:8px;font-size:28px;font-weight:700;letter-spacing:-0.5px;">Help Us Build What You Need</h3>
+          <p style="color:#64748b;font-size:16px;margin-bottom:40px;line-height:1.6;">
+            Your input shapes version 2. <strong>Takes 2 minutes.</strong> Tell us which career paths to prioritize and what would make you click "Enroll Now". 🚀
+          </p>
+  
+  <form id="feedbackForm" class="feedback-form">
+      <!-- Question 1: Rating -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">1</span>
+              <span>How helpful were these recommendations?</span>
+          </label>
+          <div class="rating-buttons" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;">
+              <button type="button" class="rating-btn" data-value="1" style="padding:14px 16px;border:2px solid #e2e8f0;background:white;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center;">1 - Not helpful</button>
+              <button type="button" class="rating-btn" data-value="2" style="padding:14px 16px;border:2px solid #e2e8f0;background:white;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center;">2</button>
+              <button type="button" class="rating-btn" data-value="3" style="padding:14px 16px;border:2px solid #e2e8f0;background:white;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center;">3</button>
+              <button type="button" class="rating-btn" data-value="4" style="padding:14px 16px;border:2px solid #e2e8f0;background:white;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center;">4</button>
+              <button type="button" class="rating-btn" data-value="5" style="padding:14px 16px;border:2px solid #e2e8f0;background:white;border-radius:8px;font-size:15px;font-weight:500;cursor:pointer;transition:all 0.2s;text-align:center;">5 - Very helpful</button>
+          </div>
+          <input type="hidden" id="ratingValue" name="rating" required>
+      </div>
+
+      <!-- Question 2: Background -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">2</span>
+              <span>What's your background?</span>
+          </label>
+          <select name="background" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;background:white;cursor:pointer;transition:border-color 0.2s;color:#94a3b8;">
+              <option value="" style="color:#94a3b8;">Select your background</option>
+              <option value="Design" style="color:#1e293b;">Design</option>
+              <option value="Tech" style="color:#1e293b;">Tech</option>
+              <option value="Business" style="color:#1e293b;">Business</option>
+              <option value="Marketing" style="color:#1e293b;">Marketing</option>
+              <option value="Other" style="color:#1e293b;">Other</option>
+          </select>
+      </div>
+
+      <!-- Question 3: Desired Career Path -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">3</span>
+              <span>What career transition are you exploring?</span>
+          </label>
+          <select name="desiredPath" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;background:white;cursor:pointer;transition:border-color 0.2s;color:#94a3b8;">
+              <option value="" style="color:#94a3b8;">Select a career path</option>
+              <option value="Design→AI PM" style="color:#1e293b;">Design → AI Product Manager ✓ (Available now)</option>
+              <option value="Tech→AI PM" style="color:#1e293b;">Tech → AI Product Manager ✓ (Available now)</option>
+              <option value="Marketing→AI PM" style="color:#1e293b;">Marketing → AI Product Manager</option>
+              <option value="Business→AI PM" style="color:#1e293b;">Business → AI Product Manager</option>
+              <option value="Marketing→Data Analyst" style="color:#1e293b;">Marketing → Data Analyst</option>
+              <option value="Business→Data Analyst" style="color:#1e293b;">Business → Data Analyst</option>
+              <option value="Tech→Data Analyst" style="color:#1e293b;">Tech → Data Analyst</option>
+              <option value="Design→UX Designer" style="color:#1e293b;">Design → UX Designer</option>
+              <option value="Tech→UX Designer" style="color:#1e293b;">Tech → UX Designer</option>
+              <option value="Other" style="color:#1e293b;">Other (please specify in comments below)</option>
+          </select>
+      </div>
+
+      <!-- Question 4: Personalization Preference -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">4</span>
+              <span>Would you prefer personalized recommendations or the standard path?</span>
+          </label>
+          <select name="personalizationPreference" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;background:white;cursor:pointer;transition:border-color 0.2s;color:#94a3b8;">
+              <option value="" style="color:#94a3b8;">Select preference</option>
+              <option value="Personalized" style="color:#1e293b;">Personalized based on my specific situation</option>
+              <option value="Standard" style="color:#1e293b;">Just show me the standard path most people take</option>
+              <option value="Both" style="color:#1e293b;">Show me both options and let me decide</option>
+              <option value="Not sure" style="color:#1e293b;">Not sure</option>
+          </select>
+      </div>
+
+      <!-- Question 5: What's Stopping You -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">5</span>
+              <span>What's currently stopping you from starting a learning program?</span>
+          </label>
+          <p style="color:#64748b;font-size:15px;margin-bottom:16px;padding-left:44px;">Select all that apply</p>
+          <div style="display:grid;gap:12px;">
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="dont-know-where-to-start" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Don't know where to start given my background</span>
+              </label>
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="overwhelmed" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Overwhelmed by too many options</span>
+              </label>
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="afraid-wrong-choice" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Afraid of picking the wrong courses</span>
+              </label>
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="not-confident-level" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Not confident about the right skill level for me</span>
+              </label>
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="no-structure" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Don't have a structured path</span>
+              </label>
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="time" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Time constraints</span>
+              </label>
+              <label style="display:flex;align-items:center;padding:12px;background:white;border:2px solid #e2e8f0;border-radius:8px;cursor:pointer;transition:all 0.2s;font-size:16px;color:#334155;" class="checkbox-label">
+                  <input type="checkbox" name="barriers" value="cost" style="width:20px;height:20px;margin-right:12px;cursor:pointer;accent-color:var(--brand);">
+                  <span>Cost/Budget</span>
+              </label>
+          </div>
+      </div>
+
+      <!-- Question 6: What's Missing -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">6</span>
+              <span>What's missing that would make you actually click "Enroll Now"?</span>
+          </label>
+          <textarea name="whatsMissing" placeholder="Be specific - what would make you take action?" rows="4" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;line-height:1.6;resize:vertical;font-family:inherit;transition:border-color 0.2s;color:#1e293b;"></textarea>
+      </div>
+
+      <!-- Optional Email -->
+      <div style="margin-bottom:40px;">
+          <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:#e2e8f0;color:#64748b;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">7</span>
+              <span>Email <span style="font-weight:400;color:#64748b;font-size:15px;">(optional - if you want updates on v2)</span></span>
+          </label>
+          <input type="email" name="email" placeholder="your@email.com" style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;transition:border-color 0.2s;color:#1e293b;">
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" id="submitFeedback" style="background:var(--brand);color:white;border:none;padding:18px 32px;border-radius:10px;font-size:18px;font-weight:600;cursor:pointer;width:100%;transition:all 0.3s;box-shadow:0 4px 12px rgba(102,126,234,0.3);">
+          Submit Feedback
+      </button>
+      
+      <!-- Success Message -->
+      <div id="feedbackSuccess" style="display:none;margin-top:24px;padding:20px;background:#d4edda;border:2px solid #c3e6cb;border-radius:10px;color:#155724;font-weight:500;text-align:center;font-size:16px;">
+          ✓ Thank you! Your feedback will shape version 2.
+      </div>
+      
+      <!-- Error Message -->
+      <div id="feedbackError" style="display:none;margin-top:24px;padding:20px;background:#f8d7da;border:2px solid #f5c6cb;border-radius:10px;color:#721c24;font-weight:500;text-align:center;font-size:16px;">
+          ✗ Something went wrong. Please try again or email sonakshiv10@gmail.com
+      </div>
+  </form>
+</div>
+
+<style>
+/* Hover states and mobile responsive */
+.rating-btn:hover {
+  border-color: var(--brand) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102,126,234,0.2);
+}
+
+.checkbox-label:hover {
+  border-color: var(--brand) !important;
+  background: #f8f9ff !important;
+}
+
+select:focus, textarea:focus, input[type="email"]:focus {
+  outline: none;
+  border-color: var(--brand) !important;
+  box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+}
+
+/* Fix dropdown placeholder color on change */
+select:not([value=""]):valid {
+  color: #1e293b !important;
+}
+
+select[value=""]:invalid {
+  color: #94a3b8 !important;
+}
+
+textarea::placeholder, input::placeholder {
+  color: #94a3b8;
+  opacity: 1;
+}
+
+#submitFeedback:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+}
+
+#submitFeedback:active {
+  transform: translateY(0);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .feedback-section {
+      padding: 32px 20px !important;
+  }
+  
+  .feedback-section h3 {
+      font-size: 24px !important;
+  }
+  
+  .feedback-section p {
+      font-size: 15px !important;
+  }
+  
+  .feedback-section label {
+      font-size: 16px !important;
+  }
+  
+  .rating-buttons {
+      grid-template-columns: 1fr 1fr !important;
+  }
+  
+  .rating-btn {
+      font-size: 14px !important;
+      padding: 12px !important;
+  }
+  
+  .checkbox-label {
+      font-size: 15px !important;
+      padding: 10px !important;
+  }
+  
+  .checkbox-label input {
+      width: 18px !important;
+      height: 18px !important;
+  }
+}
+</style>
         <div class="cta">
           <h4>🚀 Ready to Start?</h4>
           <div id="ctaSub" class="cta-sub">Start with your certification</div>
-          <div class="cta-date">Next cohort begins <b>January 15, 2025</b></div>
+          <div class="cta-date">Next cohort begins <b>January 15, 2026</b></div>
           <button class="btn">Enroll Now</button>
         </div>
         <div class="startover-wrap">
@@ -633,11 +855,55 @@ const techGapSkillsByExperience = {
         certName = monthNum <= 4 ? 'AI Product Management Certificate' : 'AI Product Management Bootcamp';
       }
 
-      // Update UI elements
-      document.getElementById('marketInsight').innerHTML = `
-        <div class="insight-title">💡 Market Reality for ${bg.charAt(0).toUpperCase() + bg.slice(1)} ${(bg === 'design' || bg === 'tech') && role === 'product-manager' ? `(${experience} years)` : ''} → AI Product Manager</div>
-        <div class="insight-text">${data.marketInsight}</div>
-      `;
+      // Check if this is a supported path
+const isSupported = (bg === 'design' || bg === 'tech') && role === 'product-manager';
+
+// Dynamic disclaimer based on path
+let disclaimerHTML = '';
+if (!isSupported) {
+  const pathName = `${bg.charAt(0).toUpperCase() + bg.slice(1)} → ${role.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}`;
+  
+  disclaimerHTML = `
+    <div style="background:#fff3cd;border:2px solid #fbbf24;border-radius:16px;padding:24px;margin-bottom:24px;box-shadow:0 4px 12px rgba(251,191,36,0.15);">
+      <div style="display:flex;align-items:start;gap:16px;">
+        <div style="font-size:32px;line-height:1;">⚠️</div>
+        <div style="flex:1;">
+          <div style="font-weight:700;color:#78350f;margin-bottom:12px;font-size:20px;">
+            ${pathName} Path: In Development
+          </div>
+          <div style="color:#92400e;font-size:16px;line-height:1.7;margin-bottom:16px;">
+            <strong>Why you're seeing placeholder content:</strong><br>
+            We're currently building personalized recommendations for <strong>Design→AI PM</strong> and <strong>Tech→AI PM</strong> first based on market demand. 
+            The content below is generic to show you what the tool <em>could</em> do for your path.
+          </div>
+          <div style="background:#fef3c7;border-left:4px solid #f59e0b;padding:12px 16px;border-radius:8px;margin-bottom:12px;">
+            <div style="font-weight:600;color:#78350f;font-size:15px;margin-bottom:6px;">
+              🎯 Help Us Prioritize: Which path should we build next?
+            </div>
+            <div style="color:#92400e;font-size:14px;">
+              Your feedback below (takes 2 min) tells us if <strong>${pathName}</strong> is in high demand. 
+              If enough people request it, we'll fast-track it for Version 2!
+            </div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <div style="background:#22c55e;color:white;padding:6px 12px;border-radius:6px;font-size:13px;font-weight:600;">
+              ✓ Available: Design→AI PM
+            </div>
+            <div style="background:#22c55e;color:white;padding:6px 12px;border-radius:6px;font-size:13px;font-weight:600;">
+              ✓ Available: Tech→AI PM
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+document.getElementById('marketInsight').innerHTML = `
+  ${disclaimerHTML}
+  <div class="insight-title">💡 Market Reality for ${bg.charAt(0).toUpperCase() + bg.slice(1)} ${(bg === 'design' || bg === 'tech') && role === 'product-manager' ? `(${experience} years)` : ''} → ${role === 'product-manager' ? 'AI Product Manager' : role.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}</div>
+  <div class="insight-text">${data.marketInsight}</div>
+`;
 
       document.getElementById('skillsComparison').innerHTML = `
         <div class="skills-column">
@@ -733,26 +999,119 @@ const techGapSkillsByExperience = {
       document.getElementById('progressFill').style.width = '0%';
       window.scrollTo(0, 0);
     }
-    // Feedback form handling
-document.getElementById('feedbackForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const helpfulness = document.getElementById('helpfulness').value;
-  const feedback = document.getElementById('feedback').value;
-  
-  // Log to console (in real app, would send to server)
-  console.log('Feedback submitted:', { helpfulness, feedback, timestamp: new Date() });
-  
-  // Show thank you message
-  document.getElementById('thankYou').style.display = 'block';
-  
-  // Track in Google Analytics if available
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'feedback_submitted', {
-      'helpfulness_rating': helpfulness,
-      'has_text_feedback': feedback.length > 0
+   
+ // FEEDBACK FORM HANDLER
+const FEEDBACK_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyE_Cz3JrwXEVCnwRcytZ7lOsoYsP70kZSK_ogUVcTwHtgl8G8NSJACzAMAbvjTCHNb0g/exec';
+
+// Rating button selection
+document.addEventListener('DOMContentLoaded', function() {
+    const ratingButtons = document.querySelectorAll('.rating-btn');
+    const ratingValue = document.getElementById('ratingValue');
+    
+    ratingButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // Remove selected class from all buttons
+            ratingButtons.forEach(b => {
+                b.style.background = 'white';
+                b.style.borderColor = '#e2e8f0';
+                b.style.color = '#4a5568';
+            });
+            // Style selected button
+            this.style.background = 'var(--brand)';
+            this.style.borderColor = 'var(--brand)';
+            this.style.color = 'white';
+            // Set hidden input value
+            ratingValue.value = this.dataset.value;
+        });
     });
-  }
+    
+    // Hover effects for rating buttons
+    ratingButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            if (this.style.background !== 'var(--brand)') {
+                this.style.borderColor = 'var(--brand)';
+                this.style.color = 'var(--brand)';
+            }
+        });
+        btn.addEventListener('mouseleave', function() {
+            if (this.style.background !== 'var(--brand)') {
+                this.style.borderColor = '#e2e8f0';
+                this.style.color = '#4a5568';
+            }
+        });
+    });
 });
-  </script>
+
+// Form submission
+document.getElementById('feedbackForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const submitBtn = document.getElementById('submitFeedback');
+    const successMsg = document.getElementById('feedbackSuccess');
+    const errorMsg = document.getElementById('feedbackError');
+    
+    // Disable submit button
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+    
+    // Collect barriers (checkboxes)
+    const barriers = Array.from(document.querySelectorAll('input[name="barriers"]:checked'))
+        .map(cb => cb.value)
+        .join(', ');
+    
+    // Get form data
+    const formData = {
+        rating: document.getElementById('ratingValue').value,
+        background: this.elements.background.value,
+        desiredPath: this.elements.desiredPath.value,
+        personalizationPreference: this.elements.personalizationPreference.value,
+        whatsMissing: barriers + ' | ' + this.elements.whatsMissing.value,
+        email: this.elements.email.value,
+        userPathSelected: sessionStorage.getItem('selectedPath') || 'Not recorded'
+    };
+    
+    try {
+        const response = await fetch(FEEDBACK_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+        
+        // Show success message
+this.style.display = 'none'; // Hide form completely
+successMsg.style.cssText = 'display: block !important; margin-top: 24px; padding: 20px; background: #d4edda; border: 2px solid #c3e6cb; border-radius: 10px; color: #155724; font-weight: 500; text-align: center; font-size: 16px;';
+successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+// Scroll to success message
+setTimeout(() => {
+    successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}, 100);
+
+// NUCLEAR OPTION - Force success message to show
+setTimeout(() => {
+    const msg = document.getElementById('feedbackSuccess');
+    msg.style.cssText = 'display: block !important; margin-top: 24px; padding: 20px; background-color: #4d4dda; border: 2px solid #3e3cb6; border-radius: 10px; color: #15724f; font-size: 18px;';
+    console.log('✅ Success message forced visible');
+}, 200);
+        
+        // Track in Google Analytics if available
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'feedback_submitted', {
+                'event_category': 'engagement',
+                'event_label': 'v1_feedback'
+            });
+        }
+        
+    } catch (error) {
+        console.error('Error submitting feedback:', error);
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Try Again';
+    }
+});
+ </script>
 </body>
 </html>
