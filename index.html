@@ -453,7 +453,7 @@
       <!-- Question 4: Desired Career Path -->
       <div style="margin-bottom:40px;">
           <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
-              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">3</span>
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">4</span>
               <span>What career transition are you exploring?</span>
           </label>
           <select name="desiredPath" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;background:white;cursor:pointer;transition:border-color 0.2s;color:#94a3b8;">
@@ -474,7 +474,7 @@
       <!-- Question 5: Personalization Preference -->
       <div style="margin-bottom:40px;">
           <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
-              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">4</span>
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">5</span>
               <span>Would you prefer personalized recommendations or the standard path?</span>
           </label>
           <select name="personalizationPreference" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;background:white;cursor:pointer;transition:border-color 0.2s;color:#94a3b8;">
@@ -489,7 +489,7 @@
       <!-- Question 6: What's Stopping You -->
       <div style="margin-bottom:40px;">
           <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
-              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">5</span>
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">6</span>
               <span>What's currently stopping you from starting a learning program?</span>
           </label>
           <p style="color:#64748b;font-size:15px;margin-bottom:16px;padding-left:44px;">Select all that apply</p>
@@ -528,7 +528,7 @@
       <!-- Question 7: What's Missing -->
       <div style="margin-bottom:40px;">
           <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
-              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">6</span>
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:var(--brand);color:white;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">7</span>
               <span>What's missing that would make you actually click "Enroll Now"?</span>
           </label>
           <textarea name="whatsMissing" placeholder="Be specific - what would make you take action?" rows="4" required style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;line-height:1.6;resize:vertical;font-family:inherit;transition:border-color 0.2s;color:#1e293b;"></textarea>
@@ -537,7 +537,7 @@
       <!-- Optional Email -->
       <div style="margin-bottom:40px;">
           <label style="display:flex;align-items:baseline;margin-bottom:16px;font-weight:700;font-size:17px;color:#1e293b;">
-              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:#e2e8f0;color:#64748b;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">7</span>
+              <span style="display:inline-block;min-width:32px;height:32px;line-height:32px;text-align:center;background:#e2e8f0;color:#64748b;border-radius:50%;font-size:16px;margin-right:12px;flex-shrink:0;">8</span>
               <span>Email <span style="font-weight:400;color:#64748b;font-size:15px;">(optional - if you want updates on v2)</span></span>
           </label>
           <input type="email" name="email" placeholder="your@email.com" style="width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:16px;transition:border-color 0.2s;color:#1e293b;">
@@ -1020,6 +1020,16 @@ document.getElementById('marketInsight').innerHTML = `
       document.getElementById('progress').style.display = 'none';
       document.querySelectorAll('.option.active').forEach(o => o.classList.remove('selected'));
       document.getElementById('progressFill').style.width = '0%';
+      // Reset feedback form visibility
+  const feedbackSection = document.getElementById('feedbackSection');
+  if (feedbackSection) feedbackSection.style.display = 'block';
+  const feedbackForm = document.getElementById('feedbackForm');
+  if (feedbackForm) {
+    feedbackForm.reset();
+    feedbackForm.style.display = 'block';
+  }
+  document.getElementById('feedbackSuccess').style.display = 'none';
+  // ⬆️ END OF NEW LINES ⬆️
       window.scrollTo(0, 0);
     }
    
