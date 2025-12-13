@@ -1012,26 +1012,36 @@ document.getElementById('marketInsight').innerHTML = `
     }
 
     function restart() {
-      for (const k in S) S[k] = null;
-      sessionStorage.removeItem('selectedPath');
-      document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
-      document.getElementById('results').style.display = 'none';
-      document.getElementById('welcome').style.display = '';
-      document.getElementById('progress').style.display = 'none';
-      document.querySelectorAll('.option.active').forEach(o => o.classList.remove('selected'));
-      document.getElementById('progressFill').style.width = '0%';
-      // Reset feedback form visibility
+  for (const k in S) S[k] = null;
+  sessionStorage.removeItem('selectedPath');
+  document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('welcome').style.display = '';
+  document.getElementById('progress').style.display = 'none';
+  document.querySelectorAll('.option.active').forEach(o => o.classList.remove('selected'));
+  document.getElementById('progressFill').style.width = '0%';
+  
+  // Reset feedback form completely
   const feedbackSection = document.getElementById('feedbackSection');
-  if (feedbackSection) feedbackSection.style.display = 'block';
+  if (feedbackSection) {
+    feedbackSection.style.display = '';
+    feedbackSection.style.removeProperty('display');
+  }
+  
   const feedbackForm = document.getElementById('feedbackForm');
   if (feedbackForm) {
     feedbackForm.reset();
-    feedbackForm.style.display = 'block';
+    feedbackForm.style.display = '';
+    feedbackForm.style.removeProperty('display');
   }
-  document.getElementById('feedbackSuccess').style.display = 'none';
-  // ⬆️ END OF NEW LINES ⬆️
-      window.scrollTo(0, 0);
-    }
+  
+  const successMsg = document.getElementById('feedbackSuccess');
+  if (successMsg) {
+    successMsg.style.display = 'none';
+  }
+  
+  window.scrollTo(0, 0);
+}
    
  // FEEDBACK FORM HANDLER
 const FEEDBACK_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyE_Cz3JrwXEVCnwRcytZ7lOsoYsP70kZSK_ogUVcTwHtgl8G8NSJACzAMAbvjTCHNb0g/exec';
