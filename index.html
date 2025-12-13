@@ -695,6 +695,13 @@ textarea::placeholder, input::placeholder {
 
       const monthNum = timeline === '2-months' ? 2 : timeline === '4-months' ? 4 : 6;
 
+      // Store selected path for feedback form
+const bgFormatted = bg.charAt(0).toUpperCase() + bg.slice(1);
+const roleFormatted = role === 'product-manager' ? 'AI PM' : role.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+const pathName = bgFormatted + '→' + roleFormatted;
+sessionStorage.setItem('selectedPath', pathName);
+console.log('✅ Stored selected path:', pathName);
+
       // Duration-specific gap skills for design backgrounds
       const designGapSkillsByExperience = {
         '0-2': {
@@ -991,6 +998,7 @@ document.getElementById('marketInsight').innerHTML = `
 
     function restart() {
       for (const k in S) S[k] = null;
+      sessionStorage.removeItem('selectedPath');
       document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active'));
       document.getElementById('results').style.display = 'none';
       document.getElementById('welcome').style.display = '';
