@@ -1039,11 +1039,18 @@ document.getElementById('marketInsight').innerHTML = `
   if (successMsg) {
     successMsg.style.display = 'none';
   }
+
+  // Reset submit button
+  const submitBtn = document.getElementById('submitFeedback');
+  if (submitBtn) {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Submit Feedback';
+  }
   
   window.scrollTo(0, 0);
 }
-   
- // FEEDBACK FORM HANDLER
+  
+  // FEEDBACK FORM HANDLER
 const FEEDBACK_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyE_Cz3JrwXEVCnwRcytZ7lOsoYsP70kZSK_ogUVcTwHtgl8G8NSJACzAMAbvjTCHNb0g/exec';
 
 // Rating button selection
