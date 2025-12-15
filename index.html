@@ -1064,9 +1064,9 @@ document.getElementById('feedbackForm').addEventListener('submit', async functio
     yearsExperience: S.experience || 'Not recorded',
     desiredPath: sessionStorage.getItem('selectedPath') || 'Not recorded',
     personalizationPreference: this.elements.personalizationPreference.value,
-    whatsMissing: barriers + ' | ' + this.elements.whatsMissing.value,
+    whatsStopping: barriers,
+    whatsMissing: this.elements.whatsMissing.value,
     email: this.elements.email.value,
-    userPathSelected: sessionStorage.getItem('selectedPath') || 'Not recorded',
     timeline: S.timeline || 'Not recorded',
     format: S.format || 'Not recorded'
 };
